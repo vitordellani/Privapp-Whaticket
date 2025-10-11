@@ -146,16 +146,6 @@ const useStyles = makeStyles((theme) => ({
       transform: 'translateY(0)',
     },
   },
-  registerLink: {
-    color: '#07372a',
-    textDecoration: 'none',
-    fontWeight: 500,
-    transition: 'all 0.3s ease',
-    '&:hover': {
-      color: '#05251c',
-      textDecoration: 'underline',
-    },
-  },
   // Remover estilos antigos não utilizados
   paper: {
     display: 'none',
@@ -261,18 +251,6 @@ const Login = () => {
           >
             Entrar
           </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link
-                variant="body2"
-                component={RouterLink}
-                to="/signup"
-                className={classes.registerLink}
-              >
-                {i18n.t("login.buttons.register")}
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </Box>
     </div>
