@@ -1,0 +1,19 @@
+2025/10/10-23:24:21.929 1715c Reusing MANIFEST C:\Users\Vitor\Desktop\whaticket\whaticket\backend\.wwebjs_auth\session-bd_1\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/10/10-23:24:21.929 1715c Recovering log #287
+2025/10/10-23:24:22.069 1715c Reusing old log C:\Users\Vitor\Desktop\whaticket\whaticket\backend\.wwebjs_auth\session-bd_1\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000287.log 
+2025/10/10-23:24:26.256 177b0 Level-0 table #295: started
+2025/10/10-23:24:26.272 177b0 Level-0 table #295: 694552 bytes OK
+2025/10/10-23:24:26.273 177b0 Delete type=0 #287
+2025/10/10-23:24:26.273 177b0 Manual compaction at level-0 from '\x009\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00:\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/10/10-23:24:28.099 4780 Compacting 1@1 + 4@2 files
+2025/10/10-23:24:28.216 4780 Generated table #296@1: 91276 keys, 2242653 bytes
+2025/10/10-23:24:28.285 4780 Generated table #297@1: 45403 keys, 2223232 bytes
+2025/10/10-23:24:28.333 4780 Generated table #298@1: 20817 keys, 2189592 bytes
+2025/10/10-23:24:28.380 4780 Generated table #299@1: 46297 keys, 1582992 bytes
+2025/10/10-23:24:28.380 4780 Compacted 1@1 + 4@2 files => 8238469 bytes
+2025/10/10-23:24:28.381 4780 compacted to: files[ 0 0 4 0 0 0 0 ]
+2025/10/10-23:24:28.382 4780 Delete type=2 #289
+2025/10/10-23:24:28.382 4780 Delete type=2 #290
+2025/10/10-23:24:28.382 4780 Delete type=2 #291
+2025/10/10-23:24:28.382 4780 Delete type=2 #292
+2025/10/10-23:24:28.382 4780 Delete type=2 #295
