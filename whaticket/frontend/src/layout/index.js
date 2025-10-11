@@ -25,6 +25,7 @@ import UserModal from "../components/UserModal";
 import { AuthContext } from "../context/Auth/AuthContext";
 import BackdropLoading from "../components/BackdropLoading";
 import { i18n } from "../translate/i18n";
+import { useThemeMode } from "../context/ThemeMode/ThemeModeContext";
 
 const drawerWidth = 240;
 
@@ -70,6 +71,41 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    fontWeight: 600,
+    fontSize: '1.2rem',
+    background: 'linear-gradient(135deg, #07372a 0%, #0a4d3a 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    letterSpacing: '0.5px',
+    textTransform: 'uppercase',
+    transition: 'all 0.3s ease',
+    opacity: 0.95,
+    '&:hover': {
+      transform: 'scale(1.02)',
+      filter: 'brightness(1.1)',
+      opacity: 1,
+      textShadow: '0 2px 8px rgba(7, 55, 42, 0.3)',
+    },
+    // Estilos para dark mode
+    '&.dark-mode': {
+      color: '#ffffff',
+      background: 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #bdbdbd 100%)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      backgroundClip: 'text',
+      '&:hover': {
+        textShadow: '0 2px 8px rgba(255, 255, 255, 0.3)',
+      },
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1rem',
+      letterSpacing: '0.3px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.9rem',
+      letterSpacing: '0.2px',
+    },
   },
   drawerPaper: {
     position: "relative",
@@ -119,6 +155,7 @@ const LoggedInLayout = ({ children }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerVariant, setDrawerVariant] = useState("permanent");
   const { user } = useContext(AuthContext);
+  const { mode } = useThemeMode();
 
   useEffect(() => {
     if (document.body.offsetWidth > 600) {
@@ -184,7 +221,7 @@ const LoggedInLayout = ({ children }) => {
         </div>
         <Divider />
         <List>
-          <MainListItems drawerClose={drawerClose} />
+          <MainListItems drawerClose={drawerClose} drawerOpen={drawerOpen} />
         </List>
         <Divider />
       </Drawer>
@@ -216,7 +253,7 @@ const LoggedInLayout = ({ children }) => {
             variant="h6"
             color="inherit"
             noWrap
-            className={classes.title}
+            className={`${classes.title} ${mode === 'dark' ? 'dark-mode' : ''}`}
           >
             {process.env.REACT_APP_TITLE}
           </Typography>

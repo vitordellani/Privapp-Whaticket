@@ -95,6 +95,40 @@ const useStyles = makeStyles((theme) => ({
   hide: {
     display: "none !important",
   },
+
+  closedTabsWrapper: {
+    backgroundColor: theme.palette.background.paper,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    position: 'sticky',
+    top: 0,
+    zIndex: 1,
+  },
+
+  closedTab: {
+    minWidth: 80,
+    fontSize: '0.875rem',
+    textTransform: 'none',
+    fontWeight: 500,
+    [theme.breakpoints.down('sm')]: {
+      minWidth: 60,
+      fontSize: '0.75rem',
+      padding: theme.spacing(0.5, 1),
+    },
+    [theme.breakpoints.down('xs')]: {
+      minWidth: 50,
+      fontSize: '0.7rem',
+      padding: theme.spacing(0.25, 0.5),
+    },
+  },
+
+  closedTabContent: {
+    flex: 1,
+    overflow: 'auto',
+    height: 'calc(100% - 48px)', // Altura das abas
+    [theme.breakpoints.down('sm')]: {
+      height: 'calc(100% - 40px)',
+    },
+  },
 }));
 
 const TicketsManager = () => {
@@ -103,6 +137,7 @@ const TicketsManager = () => {
   const [searchParam, setSearchParam] = useState("");
   const [tab, setTab] = useState("open");
   const [tabOpen, setTabOpen] = useState("open");
+  const [closedTab, setClosedTab] = useState("private"); // Estado para controlar abas dos tickets fechados
   const [newTicketModalOpen, setNewTicketModalOpen] = useState(false);
   const [showAllTickets, setShowAllTickets] = useState(false);
   const searchInputRef = useRef();
@@ -151,6 +186,10 @@ const TicketsManager = () => {
 
   const handleChangeTabOpen = (e, newValue) => {
     setTabOpen(newValue);
+  };
+
+  const handleChangeClosedTab = (e, newValue) => {
+    setClosedTab(newValue);
   };
 
   const applyPanelStyle = (status) => {
@@ -363,24 +402,46 @@ const TicketsManager = () => {
         </Paper>
       </TabPanel>
       <TabPanel value={tab} name="closed" className={classes.ticketsWrapper}>
-        <Divider />
-        <ListSubheader inset>
-          Privados
-        </ListSubheader>
-        <TicketsList
-          status="closed"
-          showAll={showAllTickets}
-          selectedQueueIds={selectedQueueIds}
-        />
-       <Divider />
-        <ListSubheader inset>
-          Grupos
-        </ListSubheader>
-        <TicketsListGroup
-          status="closed"
-          showAll={showAllTickets}
-          selectedQueueIds={selectedQueueIds}
-        />
+        <div className={classes.closedTabsWrapper}>
+          <Tabs
+            value={closedTab}
+            onChange={handleChangeClosedTab}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+          >
+            <Tab 
+              label="Privados" 
+              value="private" 
+              className={classes.closedTab}
+            />
+            <Tab 
+              label="Grupos" 
+              value="groups" 
+              className={classes.closedTab}
+            />
+          </Tabs>
+        </div>
+        
+        {closedTab === "private" && (
+          <div className={classes.closedTabContent}>
+            <TicketsList
+              status="closed"
+              showAll={showAllTickets}
+              selectedQueueIds={selectedQueueIds}
+            />
+          </div>
+        )}
+        
+        {closedTab === "groups" && (
+          <div className={classes.closedTabContent}>
+            <TicketsListGroup
+              status="closed"
+              showAll={showAllTickets}
+              selectedQueueIds={selectedQueueIds}
+            />
+          </div>
+        )}
       </TabPanel>
       <TabPanel value={tab} name="search" className={classes.ticketsWrapper}>
         <TicketsList
