@@ -1,7 +1,0 @@
-deploy_password=
-db_pass=
-jwt_secret=
-jwt_refresh_secret=
-deploy_email=
-db_user=root
-db_name=whaticket
